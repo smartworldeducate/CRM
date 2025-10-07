@@ -147,7 +147,7 @@ export default function Dashboard() {
         <tr className="hover:bg-gray-50 transition">
             <td
                 className="px-4 py-2 border"
-                style={{ boxShadow: `inset 4px 0 0 0 ${data.leftColor || "#374151"}` }} // #374151 = gray-700
+                style={{ boxShadow: `inset 4px 0 0 0 ${data.leftColor || "#374151"}` }}
             >
                 <div className="flex justify-center items-center gap-2">
                     <Star className="w-4 h-4 text-gray-400 cursor-pointer hover:text-yellow-400" />
@@ -194,7 +194,7 @@ export default function Dashboard() {
                 <span className="text-blue-600 font-medium">{data.followup.name}</span>
                 <div className="text-sm text-gray-500">{data.followup.date}</div>
             </td>
-            <td className="px-4 py-2 gap-3 text-center text-gray-400">
+            <td className="px-4 py-2 gap-3 text-center text-gray-400 border">
                 <div className="flex justify-center items-center gap-3">
                     <Eye className="w-4 h-4 cursor-pointer hover:text-gray-600" />
                 </div>
@@ -261,7 +261,7 @@ export default function Dashboard() {
                             >
                                 {filter}
                                 <X
-                                    className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600"
+                                    className="w-4 h-4 text-gray-400 cursor-pointer hover:text-red-400"
                                     onClick={() => removeFilter(filter)}
                                 />
                             </span>
