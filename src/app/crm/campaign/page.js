@@ -1,6 +1,17 @@
 "use client";
 import { useState } from "react";
 import { FaStar, FaRegStar, FaEye, FaCopy, FaShareAlt, FaTimes } from "react-icons/fa";
+import {
+  Star,
+  StarOff,
+  Eye,
+  EyeOff,
+  ReceiptText,
+  Share2,
+  GitBranchPlus,
+  ChevronsUpDown,
+  X,
+} from "lucide-react";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
 export default function Dashboard() {
@@ -20,11 +31,11 @@ export default function Dashboard() {
     };
 
     const renderSortIcon = (field) => {
-        if (sortField !== field) return <FaSort className="inline ml-1 text-gray-400" />;
+        if (sortField !== field) return <ChevronsUpDown className="w-4 h-4 inline ml-1 text-gray-400" />;
         return sortOrder === "asc" ? (
-            <FaSortUp className="inline ml-1 text-blue-500" />
+            <ChevronsUpDown className="w-4 h-4 inline ml-1 text-blue-500" />
         ) : (
-            <FaSortDown className="inline ml-1 text-blue-500" />
+            <ChevronsUpDown className="w-4 h-4 inline ml-1 text-blue-500" />
         );
     };
 
@@ -131,8 +142,8 @@ export default function Dashboard() {
         <tr className="hover:bg-gray-50 transition border">
             <td className="px-4 py-2 border">
                 <div className="flex justify-center items-center gap-2">
-                    <FaRegStar className="text-gray-400 cursor-pointer hover:text-yellow-400" />
-                    <FaEye className="cursor-pointer text-gray-400 hover:text-gray-600" />
+                    <Star className="w-4 h-4 text-gray-400 cursor-pointer hover:text-yellow-400" />
+                    <EyeOff className="w-4 h-4 cursor-pointer text-gray-400 hover:text-gray-600" />
                 </div>
             </td>
             <td className="px-4 py-2 border">
@@ -166,7 +177,7 @@ export default function Dashboard() {
                         <span className="font-medium text-gray-700">{data.name}</span>
                         <span className="text-sm text-gray-500">{data.date}</span>
                     </div>
-                    <span className={`px-2 py-0.5 border border-blue-500 text-xs rounded text-red-500 bg-red-50`}>
+                    <span className={`px-2 py-0.5 border border-blue-500 text-xs rounded text-purple-500 bg-purple-100`}>
                         {data.channel}
                     </span>
                 </div>
@@ -177,17 +188,17 @@ export default function Dashboard() {
             </td>
             <td className="px-4 py-2 gap-3 text-center text-gray-400">
                 <div className="flex justify-center items-center gap-3">
-                    <FaEye className="cursor-pointer hover:text-gray-600" />
+                    <Eye className="w-4 h-4 cursor-pointer hover:text-gray-600" />
                 </div>
             </td>
             <td className="px-4 py-2 text-gray-400 border">
                 <div className="flex justify-center items-center gap-3">
-                    <FaCopy className="cursor-pointer hover:text-gray-600" />
+                    <ReceiptText className="w-4 h-4 text-blue-500 cursor-pointer hover:text-gray-600" />
                 </div>
             </td>
             <td className="px-4 py-2 text-gray-400 border">
                 <div className="flex justify-center items-center gap-3">
-                    <FaShareAlt className="cursor-pointer hover:text-gray-600" />
+                    <GitBranchPlus className="w-4 h-4 text-purple-500 cursor-pointer hover:text-gray-600"/>
                 </div>
             </td>
         </tr>
@@ -228,8 +239,8 @@ export default function Dashboard() {
                             className="flex items-center gap-2 text-sm px-3 py-1 rounded-lg border bg-blue-100 font-light"
                         >
                             {filter}
-                            <FaTimes
-                                className="text-blue-400 cursor-pointer hover:text-blue-600"
+                            <X
+                                className="w-4 h-4 text-blue-400 cursor-pointer hover:text-blue-600"
                                 onClick={() => removeFilter(filter)}
                             />
                         </span>):(  <span
@@ -237,8 +248,8 @@ export default function Dashboard() {
                             className="flex items-center text-gray-700 gap-2 text-sm px-3 py-1 rounded-lg border"
                         >
                             {filter}
-                            <FaTimes
-                                className="text-gray-400 cursor-pointer hover:text-gray-600"
+                            <X
+                                className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600"
                                 onClick={() => removeFilter(filter)}
                             />
                         </span>)
