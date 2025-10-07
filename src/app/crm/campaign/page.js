@@ -1,19 +1,16 @@
 "use client";
 import { useState } from "react";
-import { FaStar, FaRegStar, FaEye, FaCopy, FaShareAlt, FaTimes } from "react-icons/fa";
 import {
-  Star,
-  StarOff,
-  Eye,
-  EyeOff,
-  ReceiptText,
-  Share2,
-  GitBranchPlus,
-  ChevronsUpDown,
-  X,
+    Star,
+    Eye,
+    EyeOff,
+    ReceiptText,
+    GitBranchPlus,
+    ChevronsUpDown,
+    X,
+    SlidersHorizontal,
+    Search,
 } from "lucide-react";
-import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
-
 export default function Dashboard() {
     const tabs = ["Inquiry", "Contacted", "Engagement", "Qualified", "Application", "Assessment", "Matured"];
     const [activeTab, setActiveTab] = useState("Inquiry");
@@ -57,6 +54,7 @@ export default function Dashboard() {
         {
             id: 25147,
             channel: "Web",
+            leftColor: "#3B82F6",
             color: "bg-green-50",
             name: "James Walker",
             date: "15 Aug, 2024",
@@ -66,6 +64,7 @@ export default function Dashboard() {
         {
             id: 91453,
             channel: "Telephone",
+            leftColor: "#d144e4ff",
             color: "bg-green-50",
             name: "Emily Carter",
             date: "13 Aug, 2024",
@@ -75,6 +74,7 @@ export default function Dashboard() {
         {
             id: 25147,
             channel: "Web",
+            leftColor: "#f6da3bff",
             color: "bg-green-50",
             name: "James Walker",
             date: "15 Aug, 2024",
@@ -84,6 +84,7 @@ export default function Dashboard() {
         {
             id: 91453,
             channel: "Telephone",
+            leftColor: "#3B82F6",
             color: "bg-green-50",
             name: "Emily Carter",
             date: "13 Aug, 2024",
@@ -96,6 +97,7 @@ export default function Dashboard() {
         {
             id: 25147,
             channel: "Call Center",
+            leftColor: "#e443aeff",
             color: "bg-green-50",
             name: "Olivia Bennett",
             date: "13 Aug, 2024",
@@ -105,6 +107,7 @@ export default function Dashboard() {
         {
             id: 25147,
             channel: "Walk-in",
+            leftColor: "#e069fdff",
             color: "bg-green-50",
             name: "Michael Turner",
             date: "15 Aug, 2024",
@@ -114,6 +117,7 @@ export default function Dashboard() {
         {
             id: 25147,
             channel: "Call Center",
+            leftColor: "#aeee66ff",
             color: "bg-green-50",
             name: "Olivia Bennett",
             date: "13 Aug, 2024",
@@ -123,6 +127,7 @@ export default function Dashboard() {
         {
             id: 25147,
             channel: "Walk-in",
+            leftColor: "#3B82F6",
             color: "bg-green-50",
             name: "Michael Turner",
             date: "15 Aug, 2024",
@@ -139,8 +144,11 @@ export default function Dashboard() {
         );
 
     const Row = ({ data }) => (
-        <tr className="hover:bg-gray-50 transition border">
-            <td className="px-4 py-2 border">
+        <tr className="hover:bg-gray-50 transition">
+            <td
+                className="px-4 py-2 border"
+                style={{ boxShadow: `inset 4px 0 0 0 ${data.leftColor || "#374151"}` }} // #374151 = gray-700
+            >
                 <div className="flex justify-center items-center gap-2">
                     <Star className="w-4 h-4 text-gray-400 cursor-pointer hover:text-yellow-400" />
                     <EyeOff className="w-4 h-4 cursor-pointer text-gray-400 hover:text-gray-600" />
@@ -167,7 +175,7 @@ export default function Dashboard() {
                     </span>
                 </div>
             </td>
-         <td className="px-4 py-2 border border-l-4 border-gray-200">
+            <td className="px-4 py-2 border border-l-4 border-gray-200">
                 <div className="flex items-center space-x-3">
                     {/* Image */}
                     {/* <span className="flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-200 font-bold border-1 border-orange-300">A</span> */}
@@ -198,7 +206,7 @@ export default function Dashboard() {
             </td>
             <td className="px-4 py-2 text-gray-400 border">
                 <div className="flex justify-center items-center gap-3">
-                    <GitBranchPlus className="w-4 h-4 text-purple-500 cursor-pointer hover:text-gray-600"/>
+                    <GitBranchPlus className="w-4 h-4 text-purple-500 cursor-pointer hover:text-gray-600" />
                 </div>
             </td>
         </tr>
@@ -232,36 +240,44 @@ export default function Dashboard() {
 
             {/* Filters */}
             <div className="rounded-2xl p-0 m-0">
+
                 <div className="p-4 bg-white border mt-5 mb-4 flex flex-wrap gap-3 items-center rounded">
-                    {filters.map((filter, idx) => (
-                        filter == "filter" ? (  <span
-                            key={idx}
-                            className="flex items-center gap-2 text-sm px-3 py-1 rounded-lg border bg-blue-100 font-light"
-                        >
-                            {filter}
-                            <X
-                                className="w-4 h-4 text-blue-400 cursor-pointer hover:text-blue-600"
-                                onClick={() => removeFilter(filter)}
-                            />
-                        </span>):(  <span
-                            key={idx}
-                            className="flex items-center text-gray-700 gap-2 text-sm px-3 py-1 rounded-lg border"
-                        >
-                            {filter}
-                            <X
-                                className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600"
-                                onClick={() => removeFilter(filter)}
-                            />
-                        </span>)
-                      
-                    ))}
-                    <input
-                        type="text"
-                        placeholder="Search name, team name..."
-                        className="ml-auto border rounded px-3 py-1 text-sm"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
+                    {filters.map((filter, idx) =>
+                        filter == "filter" ? (
+                            <span
+                                key={idx}
+                                className="flex items-center gap-2 text-blue-500 text-sm px-3 py-1 rounded-lg border bg-blue-100 font-light"
+                            >
+                                <SlidersHorizontal
+                                    className="w-4 h-4 text-blue-400 cursor-pointer hover:text-blue-600"
+                                    onClick={() => removeFilter(filter)}
+                                />
+                                {filter}
+                            </span>
+                        ) : (
+                            <span
+                                key={idx}
+                                className="flex items-center text-gray-700 gap-2 text-sm px-3 py-1 rounded-lg border"
+                            >
+                                {filter}
+                                <X
+                                    className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600"
+                                    onClick={() => removeFilter(filter)}
+                                />
+                            </span>
+                        )
+                    )}
+
+                    <div className="ml-auto relative">
+                        <input
+                            type="text"
+                            placeholder="Search name, team name..."
+                            className="border rounded pl-3 pr-8 py-1 text-sm"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <Search className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    </div>
                 </div>
 
                 <div className="shadow-sm rounded-lg border border-gray-200 overflow-hidden">
