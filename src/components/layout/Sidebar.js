@@ -47,7 +47,7 @@ export default function Sidebar({ collapsed }) {
       children: [
         { name: "Leads", path: "/crm/leads" },
         { name: "Registrations", path: "/crm/registrations" },
-        { name: "Admissions", path: "/crm/admissions" },
+        { name: "Admissions", path: "/crm/campaign" },
         { name: "Campaign", path: "/crm/campaign" },
       ],
     },

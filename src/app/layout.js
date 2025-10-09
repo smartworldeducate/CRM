@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Script from "next/script";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import TabRenderer from "@/components/TabRenderer";
 export const metadata = {
   title: "CRM Enterprise App",
   description: "Next.js + Tailwind CRM",
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
               {children}
             </main>
           </div> */}
-          <AuthLayout>{children}</AuthLayout>
+          <AuthLayout><TabRenderer>{children}</TabRenderer></AuthLayout>
        
 
         </ReduxProvider>

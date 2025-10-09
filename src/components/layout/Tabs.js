@@ -1,13 +1,9 @@
 "use client";
 
 import { useSelector, useDispatch } from "react-redux";
-import { removeTab, setActiveTab } from "../../redux/slices/tabsSlice";
+import { removeTab, setActiveTab, refreshTab } from "../../redux/slices/tabsSlice";
 import Link from "next/link";
-import {
-  X,
-  Home,
-  RotateCcw, // ✅ Lucide refresh icon
-} from "lucide-react";
+import { X, Home, RefreshCw } from "lucide-react";
 
 export default function Tabs() {
   const { tabs, activeTab } = useSelector((state) => state.tabs);
@@ -47,8 +43,11 @@ export default function Tabs() {
       </div>
 
       {/* ✅ Right side refresh icon */}
-      <div className="border-l border-blue-500 pl-3 cursor-pointer flex items-center gap-1">
-        <RotateCcw className="h-5 w-5 text-blue-500" />
+      <div
+        className="border-l border-blue-500 pl-3 cursor-pointer flex items-center gap-1"
+        onClick={() => dispatch(refreshTab(activeTab))}
+      >
+        <RefreshCw className="h-5 w-5 text-blue-500" />
       </div>
     </div>
   );
